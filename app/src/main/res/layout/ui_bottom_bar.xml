@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/ll_bottom_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/bottom_bar_height"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/ll_news"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true">
+
+        <View
+            android:id="@+id/dongtai"
+            android:layout_width="@dimen/icon_bar_size"
+            android:layout_height="@dimen/icon_bar_size"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/selector_bar_news"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/dongtai"
+            android:text="@string/tab_news_text"
+            android:layout_marginTop="@dimen/tab_text_margin_top"
+            android:textSize="@dimen/normal_text_size"
+            />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/iv_unread_dongtai"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_toRightOf="@id/dongtai"
+            android:src="@color/colorRed"
+            app:riv_border_width="0dip"
+            app:riv_corner_radius="30dip"
+            app:riv_mutate_background="false"
+            app:riv_oval="true"
+            android:visibility="invisible"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/ll_star"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true">
+
+        <View
+            android:id="@+id/star"
+            android:layout_width="@dimen/icon_bar_size"
+            android:layout_height="@dimen/icon_bar_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_below="@id/star"
+            android:text="@string/tab_star_text"
+            android:layout_marginTop="@dimen/tab_text_margin_top"
+            android:textSize="@dimen/normal_text_size"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/ll_weibo"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true">
+
+        <View
+            android:id="@+id/weibo"
+            android:layout_width="@dimen/icon_bar_size"
+            android:layout_height="@dimen/icon_bar_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/weibo"
+            android:gravity="center_horizontal"
+            android:text="@string/tab_weibo_text"
+            android:layout_marginTop="@dimen/tab_text_margin_top"
+            android:textSize="@dimen/normal_text_size"
+            />
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/iv_unread_weibo"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_toRightOf="@id/weibo"
+            android:src="@color/colorRed"
+            app:riv_border_width="0dip"
+            app:riv_corner_radius="30dip"
+            app:riv_mutate_background="false"
+            app:riv_oval="true"
+            android:visibility="invisible"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/ll_find"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true">
+
+        <View
+            android:id="@+id/find"
+            android:layout_width="@dimen/icon_bar_size"
+            android:layout_height="@dimen/icon_bar_size"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/find"
+            android:gravity="center_horizontal"
+            android:text="@string/tab_find_text"
+            android:layout_marginTop="@dimen/tab_text_margin_top"
+            android:textSize="@dimen/normal_text_size"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/ll_my"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:clickable="true">
+
+        <View
+            android:id="@+id/my"
+            android:layout_width="@dimen/icon_bar_size"
+            android:layout_centerHorizontal="true"
+            android:layout_height="@dimen/icon_bar_size"
+            android:layout_marginTop="2dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/my"
+            android:gravity="center_horizontal"
+            android:text="@string/tab_my_text"
+            android:layout_marginTop="@dimen/tab_text_margin_top"
+            android:textSize="@dimen/normal_text_size"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

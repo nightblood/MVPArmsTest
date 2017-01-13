@@ -1,0 +1,15 @@
+package com.jess.arms.mvp;
+
+import android.content.Intent;
+
+/**
+ * Created by jess on 16/4/22.
+ */
+public interface BaseView {
+
+    void showLoading();
+    void hideLoading();
+    void showMessage(String message);
+    void launchActivity(Intent intent);
+    void killMyself();
+}
