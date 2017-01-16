@@ -13,8 +13,6 @@ import me.jessyan.mvparms.demo.mvp.ui.activity.SplashActivity;
 @ActivityScope
 @Component(modules = SplashModule.class, dependencies = AppComponent.class)
 public interface SplashComponent {
-
-
     void inject(SplashActivity activity);
 
 }

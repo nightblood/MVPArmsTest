@@ -5,7 +5,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.rx_cache.internal.RxCache;
 import me.jessyan.mvparms.demo.mvp.model.api.cache.CommonCache;
 
 /**
@@ -13,12 +12,6 @@ import me.jessyan.mvparms.demo.mvp.model.api.cache.CommonCache;
  */
 @Module
 public class CacheModule {
-
-    @Singleton
-    @Provides
-    CommonCache provideCommonService(RxCache rxCache) {
-        return rxCache.using(CommonCache.class);
-    }
 
 
 }

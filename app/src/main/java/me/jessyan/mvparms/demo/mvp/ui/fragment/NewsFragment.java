@@ -51,9 +51,6 @@ public class NewsFragment extends WEFragment<NullPresenter> implements OnTabSele
     @Override
     protected void initData() {
         mFragments.add(MyFragment.class);
-        mFragments.add(UserFragment.class);
-        mFragments.add(UserFragment.class);
-        mFragments.add(UserFragment.class);
         NewsPageAdapter adapter = new NewsPageAdapter(getChildFragmentManager());
         mVpContainer.setAdapter(adapter);
 

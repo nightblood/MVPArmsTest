@@ -70,7 +70,7 @@ public class SplashActivity extends WEActivity<SplashPresenter> implements Splas
 
     @Override
     public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -94,6 +94,6 @@ public class SplashActivity extends WEActivity<SplashPresenter> implements Splas
 
     @OnClick(R.id.btn_commit)
     public void onCommit(View view) {
-        mPresenter.onCommit(mEtAccount.getText().toString().trim(), mEtPwd.getText().toString().trim());
+        mPresenter.login(this,mEtAccount.getText().toString().trim(), mEtPwd.getText().toString().trim());
     }
 }

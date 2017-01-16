@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import me.jessyan.mvparms.demo.BuildConfig;
 import me.jessyan.mvparms.demo.app.utils.Utils;
 import me.jessyan.mvparms.demo.di.module.CacheModule;
-import me.jessyan.mvparms.demo.di.module.ServiceModule;
 import me.jessyan.mvparms.demo.mvp.model.api.Api;
 import me.jessyan.rxerrorhandler.handler.listener.ResponseErroListener;
 import okhttp3.Interceptor;
@@ -43,7 +42,6 @@ public class WEApplication extends BaseApplication {
                 .clientModule(getClientModule())//baseApplication提供
                 .imageModule(getImageModule())//baseApplication提供
                 .globeConfigModule(getGlobeConfigModule())//全局配置
-                .serviceModule(new ServiceModule())//需自行创建
                 .cacheModule(new CacheModule())//需自行创建
                 .build();
         if (BuildConfig.LOG_DEBUG) {//Timber日志打印

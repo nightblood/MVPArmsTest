@@ -1,16 +1,17 @@
 package me.jessyan.mvparms.demo.mvp.presenter;
 
+import android.content.Context;
+
 import com.jess.arms.di.scope.ActivityScope;
+import com.jess.arms.http.HttpException;
+import com.jess.arms.http.HttpRequestCallback;
 import com.jess.arms.mvp.BasePresenter;
 
 import javax.inject.Inject;
 
 import me.jessyan.mvparms.demo.mvp.contract.SplashContract;
 import me.jessyan.mvparms.demo.mvp.model.entity.LoginResponse;
-import me.jessyan.mvparms.demo.mvp.model.entity.SplashData;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import okhttp3.Call;
 
 /**
  * Created by Administrator on 2017/1/13 0013.
@@ -24,48 +25,32 @@ public class SplashPresenter extends BasePresenter<SplashContract.Model, SplashC
 
     }
 
-    public void requestData() {
+    public void login(Context context, String id, String pwd) {
+        mModel.doLogin(context, id, pwd, new HttpRequestCallback<LoginResponse>() {
+            @Override
+            public void onStart() {
+                mRootView.showMessage("onStart");
 
-        mModel.getSplashData()
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<SplashData>() {
-                    @Override
-                    public void onCompleted() {
+            }
 
-                    }
+            @Override
+            public void onFinish() {
+                mRootView.showMessage("onFinish");
 
-                    @Override
-                    public void onError(Throwable e) {
-                        mRootView.showMessage(e.toString());
-                    }
+            }
 
-                    @Override
-                    public void onNext(SplashData splashData) {
-                        mRootView.updateView(splashData);
-                    }
-                });
-    }
+            @Override
+            public void onResponse(LoginResponse loginResponse) {
+                    mRootView.showMessage("onResponse");
 
-    public void onCommit(String id, String pwd) {
-        mModel.commit(id, pwd)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<LoginResponse>() {
-                    @Override
-                    public void onCompleted() {
+                }
 
-                    }
 
-                    @Override
-                    public void onError(Throwable e) {
+            @Override
+            public void onFailure(Call call, HttpException e) {
+                mRootView.showMessage("onFailure" + e.toString());
 
-                    }
-
-                    @Override
-                    public void onNext(LoginResponse loginResponse) {
-                        mRootView.showMessage(loginResponse.action);
-                    }
-                });
+            }
+        });
     }
 }
