@@ -3,17 +3,17 @@ package common;
 import android.app.Application;
 
 import com.google.gson.Gson;
-import com.jess.arms.base.AppManager;
-import com.jess.arms.di.module.AppModule;
-import com.jess.arms.di.module.ClientModule;
-import com.jess.arms.di.module.GlobeConfigModule;
-import com.jess.arms.di.module.ImageModule;
-import com.jess.arms.widget.imageloader.ImageLoader;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
+import me.jessyan.mvparms.demo.base.AppManager;
+import me.jessyan.mvparms.demo.di.module.AppModule;
 import me.jessyan.mvparms.demo.di.module.CacheModule;
+import me.jessyan.mvparms.demo.di.module.ClientModule;
+import me.jessyan.mvparms.demo.di.module.GlobeConfigModule;
+import me.jessyan.mvparms.demo.di.module.ImageModule;
+import me.jessyan.mvparms.demo.widget.imageloader.ImageLoader;
 
 /**
  * Created by jess on 8/4/16.
