@@ -7,15 +7,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jakewharton.rxbinding.widget.RxTextView;
-import com.jess.arms.base.BaseHolder;
-import com.jess.arms.widget.imageloader.ImageLoader;
-import com.jess.arms.widget.imageloader.glide.GlideImageConfig;
 
-import butterknife.BindView;
 import common.WEApplication;
-import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.app.utils.ScreenUtils;
+import me.jessyan.mvparms.demo.base.BaseHolder;
 import me.jessyan.mvparms.demo.mvp.model.entity.User;
+import me.jessyan.mvparms.demo.widget.imageloader.ImageLoader;
+import me.jessyan.mvparms.demo.widget.imageloader.glide.GlideImageConfig;
 import rx.Observable;
 
 /**
@@ -25,10 +23,10 @@ import rx.Observable;
 public class UserItemHolder extends BaseHolder<User> {
 
     @Nullable
-    @BindView(R.id.iv_avatar)
+//    @BindView(R.id.iv_avatar)
     ImageView mAvater;
     @Nullable
-    @BindView(R.id.tv_name)
+//    @BindView(R.id.tv_name)
     TextView mName;
     private ImageLoader mImageLoader; // 用于加载图片的管理类,默认使用 glide,使用策略模式,可替换框架
     private final WEApplication mApplication;
@@ -42,12 +40,9 @@ public class UserItemHolder extends BaseHolder<User> {
 
     @Override
     public void setData(User data) {
-
         int imageSize = (ScreenUtils.getScreenWidth() / 3);
         mAvater.setLayoutParams(new FrameLayout.LayoutParams(imageSize, imageSize));
-
         Observable.just(data.getLogin()).subscribe(RxTextView.text(mName));
-
         mImageLoader.loadImage(mApplication,
                 GlideImageConfig.builder()
                         .url(data.getAvatarUrl())

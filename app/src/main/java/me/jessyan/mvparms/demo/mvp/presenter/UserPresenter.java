@@ -2,24 +2,21 @@ package me.jessyan.mvparms.demo.mvp.presenter;
 
 import android.app.Application;
 
-import com.jess.arms.base.AppManager;
-import com.jess.arms.base.DefaultAdapter;
-import com.jess.arms.di.scope.ActivityScope;
-import com.jess.arms.mvp.BasePresenter;
-import com.jess.arms.utils.PermissionUtil;
-import com.jess.arms.utils.RxUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import me.jessyan.mvparms.demo.base.AppManager;
+import me.jessyan.mvparms.demo.base.DefaultAdapter;
+import me.jessyan.mvparms.demo.di.scope.ActivityScope;
+import me.jessyan.mvparms.demo.mvp.BasePresenter;
 import me.jessyan.mvparms.demo.mvp.contract.UserContract;
 import me.jessyan.mvparms.demo.mvp.model.entity.User;
 import me.jessyan.mvparms.demo.mvp.ui.adapter.UserAdapter;
-import me.jessyan.rxerrorhandler.core.RxErrorHandler;
-import me.jessyan.rxerrorhandler.handler.ErrorHandleSubscriber;
-import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
+import me.jessyan.mvparms.demo.utils.PermissionUtil;
+import me.jessyan.mvparms.demo.utils.RxUtils;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.schedulers.Schedulers;
@@ -30,7 +27,7 @@ import rx.schedulers.Schedulers;
  */
 @ActivityScope
 public class UserPresenter extends BasePresenter<UserContract.Model, UserContract.View> {
-    private RxErrorHandler mErrorHandler;
+//    private RxErrorHandler mErrorHandler;
     private AppManager mAppManager;
     private Application mApplication;
     private List<User> mUsers = new ArrayList<>();
@@ -38,13 +35,12 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
     private int lastUserId = 1;
 
     @Inject
-    public UserPresenter(UserContract.Model model, UserContract.View rootView, RxErrorHandler handler
+    public UserPresenter(UserContract.Model model, UserContract.View rootView
             , AppManager appManager, Application application) {
         //UserContract.Model , UserContract.View 由UserModule 创建实例
         //
         super(model, rootView);
         this.mApplication = application;
-        this.mErrorHandler = handler;
         this.mAppManager = appManager;
         mAdapter = new UserAdapter(mUsers);
 
@@ -60,13 +56,13 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
             public void onRequestPermissionSuccess() {
                 //request permission success, do something.
             }
-        }, mRootView.getRxPermissions(), mRootView, mErrorHandler);
+        }, mRootView.getRxPermissions(), mRootView);
 
         if (pullToRefresh) lastUserId = 1;
 
         mModel.getUsers(lastUserId, pullToRefresh)
                 .subscribeOn(Schedulers.io())
-                .retryWhen(new RetryWithDelay(3, 2))//遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
+//                .retryWhen(new RetryWithDelay(3, 2))//遇到错误时重试,第一个参数为重试几次,第二个参数为重试的间隔
                 .doOnSubscribe(new Action0() {
                     @Override
                     public void call() {
@@ -87,7 +83,7 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
                     }
                 })
                 .compose(RxUtils.<List<User>>bindToLifecycle(mRootView))//使用RXlifecycle,使 subscription和 activity一起销毁
-                .subscribe(new ErrorHandleSubscriber<List<User>>(mErrorHandler) {
+                .subscribe(new Subscriber<List<User>>() {
                     @Override
                     public void onNext(List<User> users) {
                         lastUserId = users.get(users.size() - 1).getId();//记录最后一个id,用于下一次请求
@@ -101,12 +97,10 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
                     @Override
                     public void onError(Throwable e) {
                         // 请求失败处理
-                        super.onError(e);
                     }
 
                     @Override
                     public void onCompleted() {
-                        super.onCompleted();
                     }
                 });
     }
@@ -116,7 +110,6 @@ public class UserPresenter extends BasePresenter<UserContract.Model, UserContrac
         super.onDestroy();
         this.mAdapter = null;
         this.mUsers = null;
-        this.mErrorHandler = null;
         this.mAppManager = null;
         this.mApplication = null;
     }

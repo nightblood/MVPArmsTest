@@ -10,6 +10,8 @@ public interface BaseView {
     void showLoading();
     void hideLoading();
     void showMessage(String message);
+    void loadSuccess(Object o);
+    void loadFail();
     void launchActivity(Intent intent);
     void killMyself();
 }

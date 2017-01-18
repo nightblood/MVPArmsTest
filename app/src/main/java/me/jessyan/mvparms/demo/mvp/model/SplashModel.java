@@ -2,13 +2,12 @@ package me.jessyan.mvparms.demo.mvp.model;
 
 import android.content.Context;
 
-import com.jess.arms.di.scope.ActivityScope;
-import com.jess.arms.http.HttpRequestCallback;
-import com.jess.arms.http.RequestParams;
-import com.jess.arms.mvp.BaseModel;
-
 import javax.inject.Inject;
 
+import me.jessyan.mvparms.demo.di.scope.ActivityScope;
+import me.jessyan.mvparms.demo.http.HttpRequestCallback;
+import me.jessyan.mvparms.demo.http.RequestParams;
+import me.jessyan.mvparms.demo.mvp.BaseModel;
 import me.jessyan.mvparms.demo.mvp.contract.SplashContract;
 
 /**
@@ -28,4 +27,11 @@ public class SplashModel extends BaseModel implements SplashContract.Model {
         requestParams.put("password", pwd);
         setPostRequest(context, "http://app.0575.com/app.php?c=User&a=Login", requestParams, callback);
     }
+
+   /* @Override
+    public void deleteAllAuth(Context context, HttpRequestCallback callback) {
+        RequestParams requestParams = new RequestParams();
+        requestParams.put("third_party", "all");
+        setPostRequest(context, Constants.URL_AUTH_DELETE, requestParams, callback);
+    }*/
 }

@@ -1,8 +1,9 @@
 package common;
 
-import com.jess.arms.base.BaseFragment;
-import com.jess.arms.mvp.BasePresenter;
 import com.squareup.leakcanary.RefWatcher;
+
+import me.jessyan.mvparms.demo.base.BaseFragment;
+import me.jessyan.mvparms.demo.mvp.BasePresenter;
 
 /**
  * Created by jess on 8/5/16 14:11

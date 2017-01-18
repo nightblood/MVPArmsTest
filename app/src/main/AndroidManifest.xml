@@ -28,6 +28,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".mvp.ui.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
         <!-- autolayout meta
         将设计图的宽高配置后,配合AutoLauout控件使用,在设计图尺寸以外的其它尺寸手机上,也能达到和设计图一样的效果
         -->
@@ -39,7 +42,7 @@
             android:value="1920"/>
         <!--glide配置-->
         <meta-data
-            android:name="com.jess.arms.widget.imageloader.glide.GlideConfiguration"
+            android:name="me.jessyan.mvparms.demo.widget.imageloader.glide.GlideConfiguration"
             android:value="GlideModule"/>
 
     </application>

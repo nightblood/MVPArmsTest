@@ -7,8 +7,9 @@ import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
 import android.view.View;
 
-import com.jess.arms.utils.DrawableProvider;
-import com.jess.arms.utils.UiUtils;
+import me.jessyan.mvparms.demo.utils.DrawableProvider;
+import me.jessyan.mvparms.demo.utils.UiUtils;
+
 
 /**
  * 使图片高斯模糊

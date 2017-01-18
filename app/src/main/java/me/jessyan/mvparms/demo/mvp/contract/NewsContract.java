@@ -1,8 +1,7 @@
 package me.jessyan.mvparms.demo.mvp.contract;
 
-import com.jess.arms.mvp.BaseView;
-import com.jess.arms.mvp.IModel;
-
+import me.jessyan.mvparms.demo.mvp.BaseView;
+import me.jessyan.mvparms.demo.mvp.IModel;
 import me.jessyan.mvparms.demo.mvp.model.entity.SplashData;
 import rx.Observable;
 

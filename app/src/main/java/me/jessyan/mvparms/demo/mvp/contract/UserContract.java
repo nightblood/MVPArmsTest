@@ -2,13 +2,13 @@ package me.jessyan.mvparms.demo.mvp.contract;
 
 import android.content.Context;
 
-import com.jess.arms.base.DefaultAdapter;
-import com.jess.arms.mvp.BaseView;
-import com.jess.arms.mvp.IModel;
 import com.tbruyelle.rxpermissions.RxPermissions;
 
 import java.util.List;
 
+import me.jessyan.mvparms.demo.base.DefaultAdapter;
+import me.jessyan.mvparms.demo.mvp.BaseView;
+import me.jessyan.mvparms.demo.mvp.IModel;
 import me.jessyan.mvparms.demo.mvp.model.entity.User;
 import rx.Observable;
 
@@ -30,7 +30,7 @@ public interface UserContract {
         android.view.View initHeader();
     }
     // Model层定义接口,外部只需关心model返回的数据,无需关心内部细节,及是否使用缓存
-    interface Model extends IModel{
+    interface Model extends IModel {
         Observable<List<User>> getUsers(int lastIdQueried, boolean update);
     }
 }

@@ -3,13 +3,11 @@ package me.jessyan.mvparms.demo.mvp.ui.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import com.jess.arms.base.DefaultAdapter;
 
 import java.util.List;
 
 import me.jessyan.mvparms.demo.R;
+import me.jessyan.mvparms.demo.base.DefaultAdapter;
 import me.jessyan.mvparms.demo.mvp.model.entity.User;
 import me.jessyan.mvparms.demo.mvp.ui.holder.UserItemHolder;
 

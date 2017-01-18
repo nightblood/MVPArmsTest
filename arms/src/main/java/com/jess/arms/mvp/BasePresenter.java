@@ -77,4 +77,5 @@ public class BasePresenter<M extends IModel, V extends BaseView> implements pres
         }
     }
 
+
 }

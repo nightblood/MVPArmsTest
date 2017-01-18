@@ -2,15 +2,17 @@ package me.jessyan.mvparms.demo.mvp.presenter;
 
 import android.content.Context;
 
-import com.jess.arms.di.scope.ActivityScope;
-import com.jess.arms.http.HttpException;
-import com.jess.arms.http.HttpRequestCallback;
-import com.jess.arms.mvp.BasePresenter;
-
 import javax.inject.Inject;
 
+import common.WEApplication;
+import me.jessyan.mvparms.demo.di.scope.ActivityScope;
+import me.jessyan.mvparms.demo.http.HttpException;
+import me.jessyan.mvparms.demo.http.HttpRequestCallback;
+import me.jessyan.mvparms.demo.mvp.BasePresenter;
 import me.jessyan.mvparms.demo.mvp.contract.SplashContract;
+import me.jessyan.mvparms.demo.mvp.model.entity.BaseResponse;
 import me.jessyan.mvparms.demo.mvp.model.entity.LoginResponse;
+import me.jessyan.mvparms.demo.utils.FileUtils;
 import okhttp3.Call;
 
 /**
@@ -26,31 +28,39 @@ public class SplashPresenter extends BasePresenter<SplashContract.Model, SplashC
     }
 
     public void login(Context context, String id, String pwd) {
-        mModel.doLogin(context, id, pwd, new HttpRequestCallback<LoginResponse>() {
+        mModel.doLogin(context, id, pwd, new HttpRequestCallback<BaseResponse>() {
             @Override
             public void onStart() {
-                mRootView.showMessage("onStart");
-
             }
 
             @Override
             public void onFinish() {
-                mRootView.showMessage("onFinish");
-
+                mRootView.hideLoading();
             }
 
             @Override
-            public void onResponse(LoginResponse loginResponse) {
-                    mRootView.showMessage("onResponse");
+            public void onResponse(String response) {
+                Object parse = null;
+                try {
+                    parse = parse(LoginResponse.class, response);
 
+                    if (parse != null) {
+                        LoginResponse result = (LoginResponse) parse;
+                        WEApplication.getInstance().setUserInfo(result);
+                        FileUtils.saveConfigFile("user_info.cfg", response);
+                        mRootView.loadSuccess(result);
+                    }
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
                 }
-
+            }
 
             @Override
             public void onFailure(Call call, HttpException e) {
-                mRootView.showMessage("onFailure" + e.toString());
-
+                mRootView.loadFail();
             }
         });
     }
+
+
 }

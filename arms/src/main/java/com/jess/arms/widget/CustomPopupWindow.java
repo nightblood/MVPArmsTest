@@ -43,14 +43,13 @@ public class CustomPopupWindow extends PopupWindow {
         setFocusable(isFocus);
         setOutsideTouchable(isOutsideTouch);
         setBackgroundDrawable(mBackgroundDrawable);
-        if (mAnimationStyle != -1)//如果设置了对话则使用对话
+        if (mAnimationStyle != -1) //如果设置了对话则使用对话
             setAnimationStyle(mAnimationStyle);
         setContentView(mContentView);
     }
 
     /**
      * 获得用于展示popup内容的view
-     *
      * @return
      */
     public View getContentView() {
@@ -64,18 +63,16 @@ public class CustomPopupWindow extends PopupWindow {
      * @return
      */
     public static View inflateView(ContextThemeWrapper context, int layoutId) {
-        return LayoutInflater.from(context)
-                .inflate(layoutId, null);
+        return LayoutInflater.from(context).inflate(layoutId, null);
     }
 
-    public void show() {//默认显示到中间
+    public void show() { //默认显示到中间
         if (mParentView == null) {
             showAtLocation(mContentView, Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
         } else {
             showAtLocation(mParentView, Gravity.CENTER | Gravity.CENTER_HORIZONTAL, 0, 0);
         }
     }
-
 
     public static final class Builder {
         private View contentView;
@@ -87,7 +84,7 @@ public class CustomPopupWindow extends PopupWindow {
         private int animationStyle = -1;
         private boolean isWrap;
 
-        private Builder() {
+        public Builder() {
         }
 
         public Builder contentView(View contentView) {

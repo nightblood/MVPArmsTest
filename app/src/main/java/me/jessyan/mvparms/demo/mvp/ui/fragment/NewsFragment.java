@@ -18,6 +18,7 @@ import common.AppComponent;
 import common.WEFragment;
 import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.mvp.presenter.NullPresenter;
+import me.jessyan.mvparms.demo.mvp.ui.fragment.news.RecommendFragment;
 
 /**
  * Created by Administrator on 2017/1/11 0011.
@@ -50,7 +51,7 @@ public class NewsFragment extends WEFragment<NullPresenter> implements OnTabSele
 
     @Override
     protected void initData() {
-        mFragments.add(MyFragment.class);
+        mFragments.add(RecommendFragment.class);
         NewsPageAdapter adapter = new NewsPageAdapter(getChildFragmentManager());
         mVpContainer.setAdapter(adapter);
 

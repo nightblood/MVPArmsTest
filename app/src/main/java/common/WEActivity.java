@@ -1,7 +1,8 @@
 package common;
 
-import com.jess.arms.base.BaseActivity;
-import com.jess.arms.mvp.BasePresenter;
+
+import me.jessyan.mvparms.demo.base.BaseActivity;
+import me.jessyan.mvparms.demo.mvp.BasePresenter;
 
 /**
  * Created by jess on 8/5/16 13:13
