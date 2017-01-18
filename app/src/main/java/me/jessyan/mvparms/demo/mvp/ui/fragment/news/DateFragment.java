@@ -14,7 +14,7 @@ public class DateFragment extends BaseFragment<DatePresenter> implements DateCon
 
     @Override
     protected void ComponentInject() {
-        // DaggeC
+        // Daggea
     }
 
     @Override
