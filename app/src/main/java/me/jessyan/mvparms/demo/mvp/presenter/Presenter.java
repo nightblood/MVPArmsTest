@@ -1,9 +1,9 @@
-package me.jessyan.mvparms.demo.mvp;
+package me.jessyan.mvparms.demo.mvp.presenter;
 
 import rx.Subscription;
 
 /**
- * Created by jess on 16/4/28.
+ * Created by Administrator on 2017/1/19 0019.
  */
 public interface Presenter {
     void onStart();

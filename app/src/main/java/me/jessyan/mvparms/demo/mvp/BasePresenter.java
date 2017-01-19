@@ -16,6 +16,7 @@ import me.jessyan.mvparms.demo.http.HttpRequestCallback;
 import me.jessyan.mvparms.demo.http.HttpRequestUtil;
 import me.jessyan.mvparms.demo.http.RequestParams;
 import me.jessyan.mvparms.demo.mvp.model.entity.SuccessTag;
+import me.jessyan.mvparms.demo.mvp.presenter.Presenter;
 import okhttp3.Call;
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
