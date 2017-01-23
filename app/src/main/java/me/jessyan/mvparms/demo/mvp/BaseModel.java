@@ -5,6 +5,7 @@ import android.content.Context;
 import me.jessyan.mvparms.demo.http.HttpRequestCallback;
 import me.jessyan.mvparms.demo.http.HttpRequestUtil;
 import me.jessyan.mvparms.demo.http.RequestParams;
+import okhttp3.HttpUrl;
 
 
 /**
@@ -19,7 +20,7 @@ public class BaseModel implements IModel{
         HttpRequestUtil.getInstance().postRequest(context, url, params.toParams(), callback);
     }
 
-    protected void sendGetRequest(Context context, String url, HttpRequestCallback callback) {
+    protected void sendGetRequest(Context context, HttpUrl url, HttpRequestCallback callback) {
         HttpRequestUtil.getInstance().getRequest(context, url, callback);
     }
 

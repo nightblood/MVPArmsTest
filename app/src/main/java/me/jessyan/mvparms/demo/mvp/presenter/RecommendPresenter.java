@@ -55,9 +55,6 @@ public class RecommendPresenter extends BasePresenter<RecommendContact.Model, Re
                     }
                     mData.clear();
                     mData.addAll(((NewsRecommend) parse).getInfos());
-                    /*RecommendAdapter recommendAdapter = new RecommendAdapter(mData);
-                    mRootView.setAdapter(recommendAdapter);
-                    recommendAdapter.notifyDataSetChanged();*/
                     mAdapter.notifyDataSetChanged();
                 } catch (Throwable throwable) {
                     throwable.printStackTrace();

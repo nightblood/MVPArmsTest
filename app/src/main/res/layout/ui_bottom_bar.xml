@@ -65,6 +65,7 @@
             android:layout_height="@dimen/icon_bar_size"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="2dp"
+            android:background="@drawable/selector_bar_star"
             />
 
         <TextView
@@ -93,6 +94,7 @@
             android:layout_height="@dimen/icon_bar_size"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="2dp"
+            android:background="@drawable/selector_bar_weibo"
             />
 
         <TextView
@@ -132,6 +134,7 @@
             android:layout_height="@dimen/icon_bar_size"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="2dp"
+            android:background="@drawable/selector_bar_find"
             />
 
         <TextView
@@ -160,6 +163,7 @@
             android:layout_centerHorizontal="true"
             android:layout_height="@dimen/icon_bar_size"
             android:layout_marginTop="2dp"
+            android:background="@drawable/selector_bar_my"
             />
 
         <TextView

@@ -18,6 +18,7 @@ import common.AppComponent;
 import common.WEFragment;
 import me.jessyan.mvparms.demo.R;
 import me.jessyan.mvparms.demo.mvp.presenter.NullPresenter;
+import me.jessyan.mvparms.demo.mvp.ui.fragment.news.DateFragment;
 import me.jessyan.mvparms.demo.mvp.ui.fragment.news.RecommendFragment;
 
 /**
@@ -31,7 +32,7 @@ public class NewsFragment extends WEFragment<NullPresenter> implements OnTabSele
     ViewPager mVpContainer;
 
     private List<Class> mFragments = new ArrayList<>();
-    private final String[] mTitles = {"标签1", "标签2", "标签3", "标签4"};
+    private final String[] mTitles = {"红人推荐", "邀约", "标签3", "标签4"};
 
     @Override
     protected void ComponentInject() {
@@ -52,6 +53,7 @@ public class NewsFragment extends WEFragment<NullPresenter> implements OnTabSele
     @Override
     protected void initData() {
         mFragments.add(RecommendFragment.class);
+        mFragments.add(DateFragment.class);
         NewsPageAdapter adapter = new NewsPageAdapter(getChildFragmentManager());
         mVpContainer.setAdapter(adapter);
 

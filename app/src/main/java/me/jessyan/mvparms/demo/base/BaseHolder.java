@@ -21,11 +21,6 @@ public abstract class BaseHolder<T> extends RecyclerView.ViewHolder implements V
         KnifeUtil.bindTarget(this, itemView); //绑定
     }
 
-    /**
-     * 设置数据
-     * 刷新界面
-     * @param
-     */
     public abstract void setData(T data);
 
     @Override

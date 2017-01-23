@@ -22,7 +22,6 @@ public class DataHelper {
 
     /**
      * 存储重要信息到sharedPreferences；
-     *
      * @param key
      * @param value
      */
@@ -35,7 +34,6 @@ public class DataHelper {
 
     /**
      * 返回存在sharedPreferences的信息
-     *
      * @param key
      * @return
      */

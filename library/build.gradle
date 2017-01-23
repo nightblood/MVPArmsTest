@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+
+android {
+//    compileSdkVersion compileSdkVersion as int
+//    buildToolsVersion buildToolsVersion
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    defaultConfig {
+//        minSdkVersion minSdkVersion as int
+//        targetSdkVersion targetSdkVersion as int
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+    }
+}
+
+dependencies {
+    provided 'com.android.support:support-v4:25.1.0'
+}
+
+// gradle uploadArchives
+//apply from: 'https://raw.githubusercontent.com/bingoogolapple/PublishAar/master/central-publish.gradle'

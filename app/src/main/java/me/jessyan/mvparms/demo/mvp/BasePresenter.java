@@ -25,6 +25,12 @@ import rx.subscriptions.CompositeSubscription;
  * Created by jess on 16/4/28.
  */
 public class BasePresenter<M extends IModel, V extends BaseView> implements Presenter {
+    protected int mRvState = STATE_IDEL;
+
+    public static final int STATE_IDEL = 0;
+    public static final int STATE_LOADING = 1;
+    public static final int STATE_REFRESH = 2;
+    public static final int STATE_lOAD_ALL = 3;
 
     public static final String SUCCESS_MESSAGE_PARSE_DATA = "success_message_parse_data";
     public static final String SUCCESS_CONFIRM_MESSAGE = "success_confirm_message";
@@ -158,6 +164,7 @@ public class BasePresenter<M extends IModel, V extends BaseView> implements Pres
                 case SUCCESS_LIST_EMPTY:
                     break;
                 case SUCCESS_LIST_END:
+                    loadAll();
                     break;
                 case FAIL_SHOW_TOAST:
                 case FAIL_SHOW_CONFIRM:
@@ -211,6 +218,52 @@ public class BasePresenter<M extends IModel, V extends BaseView> implements Pres
             }
         }
         return null;
+    }
+
+    protected void loadAll() {
+        mRvState = STATE_lOAD_ALL;
+    }
+    public boolean hasLoadedAllItems() {
+        return mRvState == STATE_lOAD_ALL;
+    }
+
+    public int getRvState() {
+        return mRvState;
+    }
+
+    public boolean isLoading() {
+        return mRvState == STATE_LOADING;
+    }
+
+    protected void loadData() {
+        mRvState = mRvState == STATE_IDEL ? STATE_LOADING : STATE_REFRESH;
+    }
+
+    protected void onStartState() {
+        switch (mRvState) {
+            case STATE_REFRESH:
+                mRootView.showRefreshing();
+                break;
+            case STATE_LOADING:
+                mRootView.showLoading();
+                break;
+            default:
+                break;
+        }
+    }
+
+    protected void onFinishState() {
+        switch (mRvState) {
+            case STATE_REFRESH:
+                mRootView.refreshEnd();
+                break;
+            case STATE_LOADING:
+                mRootView.hideLoading();
+                break;
+            default:
+                break;
+        }
+        mRvState = STATE_IDEL;
     }
 
     private void deleteAllAuth() {

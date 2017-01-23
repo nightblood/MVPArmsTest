@@ -1,7 +1,6 @@
 package me.jessyan.mvparms.demo.mvp.ui.fragment.news;
 
 import android.content.Intent;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,7 +42,7 @@ public class RecommendFragment extends WEFragment<RecommendPresenter> implements
 
     @Override
     protected View initView() {
-        return LayoutInflater.from(getContext()).inflate(R.layout.frag_recommend, null);
+        return LayoutInflater.from(getContext()).inflate(R.layout.frag_list, null);
     }
 
     @Override

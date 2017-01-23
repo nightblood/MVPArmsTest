@@ -57,22 +57,6 @@ public abstract class DefaultAdapter<T> extends RecyclerView.Adapter<RecyclerVie
         return mHolder;
     }
 
-  /*  @Override
-    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
-        RecyclerView.LayoutManager manager = recyclerView.getLayoutManager();
-        if (manager instanceof GridLayoutManager) {
-            final GridLayoutManager gridLayoutManager = (GridLayoutManager) manager;
-            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-                @Override
-                public int getSpanSize(int position) {
-                    return getItemViewType(position) == TYPE_HEADER ?
-                            gridLayoutManager.getSpanCount() : 1;
-                }
-            });
-        }
-    }*/
-
     public void setHeaderSpanSize(RecyclerView.LayoutManager manager) {
         if (manager instanceof GridLayoutManager) {
             final GridLayoutManager gridLayoutManager = (GridLayoutManager) manager;

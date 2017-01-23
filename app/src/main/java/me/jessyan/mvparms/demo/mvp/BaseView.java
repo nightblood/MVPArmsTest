@@ -16,4 +16,8 @@ public interface BaseView {
     void launchActivity(Intent intent);
     void killMyself();
     Context getContext();
+
+    void refreshEnd();
+
+    void showRefreshing();
 }

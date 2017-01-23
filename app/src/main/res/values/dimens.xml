@@ -9,4 +9,5 @@
     <dimen name="title_text_size">18sp</dimen>
     <dimen name="title_bar_height">45dp</dimen>
 
+    <dimen name="divider_line">0.5dp</dimen>
 </resources>

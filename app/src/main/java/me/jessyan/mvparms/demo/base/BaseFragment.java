@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nispok.snackbar.Snackbar;
+import com.nispok.snackbar.SnackbarManager;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import org.simple.eventbus.EventBus;
@@ -49,7 +51,9 @@ public abstract class BaseFragment<P extends BasePresenter> extends RxFragment {
         ComponentInject();
         initData();
     }
-
+    public void showToast(String msg) {
+        SnackbarManager.show(Snackbar.with(getContext()).text(msg));
+    }
     /**
      * 依赖注入的入口
      */

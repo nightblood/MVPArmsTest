@@ -72,8 +72,12 @@ public class HttpRequestUtil {
      * @param url
      * @param callback
      */
-    public void getRequest(Context context, String url, final  HttpRequestCallback callback) {
-        Request request = new Request.Builder().tag(getTagByContext(context)).url(url).get().build();
+    public void getRequest(Context context, HttpUrl url, final  HttpRequestCallback callback) {
+        Request request = new Request.Builder()
+                .tag(getTagByContext(context))
+                .url(url)
+                .get()
+                .build();
         okHttpClient.newCall(request).enqueue(getCallback(context, callback));
     }
 
@@ -83,6 +87,7 @@ public class HttpRequestUtil {
                 .url(url)
                 .post(params)
                 .build();
+
 
         okHttpClient.newCall(request).enqueue(getCallback(context, callback));
     }

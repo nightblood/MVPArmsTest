@@ -3,6 +3,7 @@ package me.jessyan.mvparms.demo.mvp.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import me.jessyan.mvparms.demo.mvp.model.entity.LoginResponse;
 import me.jessyan.mvparms.demo.mvp.model.entity.SplashData;
 import me.jessyan.mvparms.demo.mvp.presenter.SplashPresenter;
 import me.jessyan.mvparms.demo.mvp.ui.widget.ProgressDialog;
+import me.jessyan.mvparms.demo.utils.DataHelper;
 import me.jessyan.mvparms.demo.widget.CustomPopupWindow;
 import me.jessyan.mvparms.demo.widget.imageloader.ImageLoader;
 import me.jessyan.mvparms.demo.widget.imageloader.glide.GlideImageConfig;
@@ -70,6 +72,12 @@ public class SplashActivity extends WEActivity<SplashPresenter> implements Splas
                 .resId(R.layout.ui_progressbar)
                 .build();
 
+        String account = DataHelper.getStringSF(this, "account");
+        if (!TextUtils.isEmpty(account)) {
+            String[] strings = account.split(":");
+            mEtAccount.setText(strings[0]);
+            mEtPwd.setText(strings[1]);
+        }
     }
 
     @Override

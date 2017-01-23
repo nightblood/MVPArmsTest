@@ -12,6 +12,7 @@ import me.jessyan.mvparms.demo.mvp.BasePresenter;
 import me.jessyan.mvparms.demo.mvp.contract.SplashContract;
 import me.jessyan.mvparms.demo.mvp.model.entity.BaseResponse;
 import me.jessyan.mvparms.demo.mvp.model.entity.LoginResponse;
+import me.jessyan.mvparms.demo.utils.DataHelper;
 import me.jessyan.mvparms.demo.utils.FileUtils;
 import okhttp3.Call;
 
@@ -27,7 +28,7 @@ public class SplashPresenter extends BasePresenter<SplashContract.Model, SplashC
 
     }
 
-    public void login(Context context, String id, String pwd) {
+    public void login(final Context context, final String id, final String pwd) {
         mModel.doLogin(context, id, pwd, new HttpRequestCallback<BaseResponse>() {
             @Override
             public void onStart() {
@@ -49,6 +50,7 @@ public class SplashPresenter extends BasePresenter<SplashContract.Model, SplashC
                         WEApplication.getInstance().setUserInfo(result);
                         FileUtils.saveConfigFile("user_info.cfg", response);
                         mRootView.loadSuccess(result);
+                        DataHelper.SetStringSF(context, "account", id + ":" + pwd);
                     }
                 } catch (Throwable throwable) {
                     throwable.printStackTrace();

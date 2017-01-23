@@ -9,6 +9,9 @@ import android.widget.RelativeLayout;
 
 import com.tbruyelle.rxpermissions.RxPermissions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import common.AppComponent;
@@ -35,7 +38,17 @@ public class MainActivity extends WEActivity<NullPresenter> {
     RelativeLayout mLlFind;
     @BindView(R.id.ll_weibo)
     RelativeLayout mLlWeibo;
-
+    @BindView(R.id.star)
+    View mBarStar;
+    @BindView(R.id.weibo)
+    View mBarWeibo;
+    @BindView(R.id.find)
+    View mBarFind;
+    @BindView(R.id.my)
+    View mBarMy;
+    @BindView(R.id.dongtai)
+    View mBarNews;
+    private List<View> mBarViews = new ArrayList<>();
 
     private RxPermissions mRxPermissions;
 //    private List<Class> mFragmentList = new ArrayList<>();
@@ -52,18 +65,22 @@ public class MainActivity extends WEActivity<NullPresenter> {
     protected View initView() {
         View view = LayoutInflater.from(this).inflate(R.layout.activit_main, null, false);
         mNewsFragment = new NewsFragment();
-//        mNewsFragment = new NewsFragment();
-        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().add(R.id.fl_container, mNewsFragment).commit();
         mCurrentFragment = mNewsFragment;
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().add(R.id.fl_container, mCurrentFragment).commit();
         return view;
     }
 
     @Override
     protected void initData() {
 
+        mBarViews.add(mBarNews);
+        mBarViews.add(mBarStar);
+        mBarViews.add(mBarWeibo);
+        mBarViews.add(mBarFind);
+        mBarViews.add(mBarMy);
+        selectedFragment(0);
     }
-
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
@@ -79,6 +96,7 @@ public class MainActivity extends WEActivity<NullPresenter> {
     public void onClick(View view) {
         int id = view.getId();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        int index = 0;
         switch (id) {
             case R.id.ll_find:
                 if (mCurrentFragment != null) {
@@ -91,6 +109,7 @@ public class MainActivity extends WEActivity<NullPresenter> {
                     transaction.show(mFindFragment);
                 }
                 mCurrentFragment = mFindFragment;
+                index = 3;
                 break;
             case R.id.ll_weibo:
                 if (mCurrentFragment != null) {
@@ -103,6 +122,7 @@ public class MainActivity extends WEActivity<NullPresenter> {
                     transaction.show(mWeiboFragment);
                 }
                 mCurrentFragment = mWeiboFragment;
+                index = 2;
                 break;
             case R.id.ll_news:
                 if (mCurrentFragment != null) {
@@ -115,6 +135,7 @@ public class MainActivity extends WEActivity<NullPresenter> {
                     transaction.show(mNewsFragment);
                 }
                 mCurrentFragment = mNewsFragment;
+                index = 0;
                 break;
             case R.id.ll_my:
                 if (mCurrentFragment != null) {
@@ -127,6 +148,7 @@ public class MainActivity extends WEActivity<NullPresenter> {
                     transaction.show(mMyFragment);
                 }
                 mCurrentFragment = mMyFragment;
+                index = 4;
                 break;
             case R.id.ll_star:
                 if (mCurrentFragment != null) {
@@ -139,11 +161,20 @@ public class MainActivity extends WEActivity<NullPresenter> {
                     transaction.show(mStarFragment);
                 }
                 mCurrentFragment = mStarFragment;
+                index = 1;
                 break;
             default:
                 return;
         }
         transaction.commit();
+        selectedFragment(index);
+    }
+
+    private void selectedFragment(int index) {
+        for (int i = 0; i < mBarViews.size(); ++i) {
+            if (i == index) mBarViews.get(i).setSelected(true);
+            else mBarViews.get(i).setSelected(false);
+        }
     }
 
 
